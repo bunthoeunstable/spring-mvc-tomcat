@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>
+   <class name = "jbr.springmvc.model.User" table = "USERS">
+      <meta attribute = "class-description">
+         This class contains the users. 
+      </meta>
+      <id name = "id" type = "int" column = "ID">
+         <generator class="native"/>
+      </id>
+      <property name = "username" column = "USERNAME" type = "string"/>
+      <property name = "password" column = "PASSWORD" type = "string"/>
+      <property name = "firstname" column = "FIRST_NAME" type = "string"/>
+      <property name = "lastname" column = "LAST_NAME" type = "string"/>
+      <property name = "email" column = "EMAIL" type = "string"/>
+      <property name = "address" column = "ADDRESS" type = "string"/>
+      <property name = "phone" column = "PHONE" type = "string"/>
+   </class>
+</hibernate-mapping>
