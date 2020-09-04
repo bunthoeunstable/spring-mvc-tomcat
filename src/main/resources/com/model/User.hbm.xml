@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
   
 <hibernate-mapping>
-   <class name = "jbr.springmvc.model.User" table = "USERS">
+   <class name = "com.springmvc.model.User" table = "USERS">
       <meta attribute = "class-description">
          This class contains the users. 
       </meta>

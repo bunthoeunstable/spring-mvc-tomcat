@@ -10,8 +10,6 @@
 	<name>springmvc-helloworld Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
-	
-	
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>4.2.6.RELEASE</spring.version>
