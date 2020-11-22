@@ -20,8 +20,11 @@ public class HibernateUtil {
 
     private static void buildSessionFactory() {
         try {
+//            Configuration configuration = new Configuration();
+//            configuration.configure("classpath:/WEB-INF/hibernate.cfg.xml");
             // Create the SessionFactory from hibernate.cfg.xml
-        	sessionFactory = new Configuration().configure().buildSessionFactory();
+        	sessionFactory = new Configuration().configure("/WEB-INF/hibernate.cfg.xml").buildSessionFactory();
+           // sessionFactory =  configuration.configure().buildSessionFactory();
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed

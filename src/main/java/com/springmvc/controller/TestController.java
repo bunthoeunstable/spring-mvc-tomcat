@@ -2,7 +2,6 @@ package com.springmvc.controller;
 
 import com.springmvc.model.User;
 import com.springmvc.service.UserService;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
