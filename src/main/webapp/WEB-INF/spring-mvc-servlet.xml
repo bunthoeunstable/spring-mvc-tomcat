@@ -27,7 +27,7 @@
 <!-- If you use MySQL Database comment out this bean and let others commented  -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" ></property>
-		<property name="url" value="jdbc:mysql://localhost:8889/spring_mvc" ></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/spring_mvc" ></property>
 		<property name="username" value="root" ></property>
 		<property name="password" value="" ></property>
 	</bean>
