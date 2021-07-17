@@ -2,16 +2,18 @@ package com.springmvc.service;
 
 import java.util.List;
 
-import com.springmvc.model.Login;
-import com.springmvc.model.User;
+import com.springmvc.model.UserInfo;
+import com.springmvc.model.dto.UserDTO;
 
 public interface UserService {
 
-  int register(User user);
+	int register(UserDTO user);
 
-  User validateUser(Login login);
-  
-  List<User> list();
-  
-  boolean delete(int id);
+	List<UserDTO> list();
+
+	boolean delete(int id);
+
+	UserInfo findUserInfo(String username);
+
+	List<String> getUserRoles(String username);
 }

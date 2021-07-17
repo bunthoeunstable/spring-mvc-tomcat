@@ -1,7 +1,6 @@
-package com.springmvc.model;
+package com.springmvc.model.dto;
 
-public class User {
-
+public class UserDTO {
 
   private Integer id;
   private String username;

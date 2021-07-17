@@ -8,10 +8,13 @@
 <title>Registration</title>
 </head>
 <body>
-	<form:form id="regForm" modelAttribute="user" action="registerProcess"
+    <jsp:include page="_menu.jsp" />
+    
+     <h1>Register</h1>
+	<form:form id="regForm" modelAttribute="user" action="${pageContext.request.contextPath}/admin/registerProcess"
 		method="post">
 
-		<table align="center">
+		<table>
 			<tr>
 				<td><form:label path="username">Username</form:label></td>
 				<td><form:input path="username" name="username" id="username" /></td>
@@ -46,11 +49,6 @@
 			<tr>
 				<td></td>
 				<td><form:button id="register" name="register">Register</form:button></td>
-			</tr>
-			<tr></tr>
-			<tr>
-				<td></td>
-				<td><a href="home.jsp">Home</a></td>
 			</tr>
 		</table>
 	</form:form>

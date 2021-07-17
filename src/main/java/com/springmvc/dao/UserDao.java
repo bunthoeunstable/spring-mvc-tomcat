@@ -2,16 +2,18 @@ package com.springmvc.dao;
 
 import java.util.List;
 
-import com.springmvc.model.Login;
-import com.springmvc.model.User;
+import com.springmvc.model.dto.UserDTO;
 
 public interface UserDao {
 
-  int register(User user);
-
-  User validateUser(Login login);
+  int register(UserDTO user);
   
-  List<User> list();
+  List<UserDTO> list();
   
   boolean delete(int id);
+  
+  public UserDTO findUserInfo(String userName);
+  
+  // [USER,AMIN,..]
+  public List<String> getUserRoles(String userName);
 }

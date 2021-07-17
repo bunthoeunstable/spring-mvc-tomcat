@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+  
+<hibernate-mapping>
+   <class name = "com.springmvc.model.dto.UserRoleDTO" table = "USER_ROLES">
+      <meta attribute = "class-description">
+         This class contains the users. 
+      </meta>
+      <id name = "id" type = "int" column = "ROLE_ID">
+         <generator class="native"/>
+      </id>
+      <property name = "username" column = "USERNAME" type = "string"/>
+      <property name = "role" column = "USER_ROLE" type = "string"/>
+   </class>
+</hibernate-mapping>

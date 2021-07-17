@@ -1,4 +1,4 @@
-package com.springmvc.dao;
+package com.springmvc.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,14 +15,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
-import com.springmvc.model.Login;
-import com.springmvc.model.User;
+import com.springmvc.dao.UserDao;
+import com.springmvc.mapper.UserInfoMapper;
+import com.springmvc.model.UserInfo;
+import com.springmvc.model.dto.UserDTO;
 import com.springmvc.persistence.HibernateUtil;
 
 @Repository
@@ -34,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 
 
 
-  public int register(User user) {
+  public int register(UserDTO user) {
 	  
 	 System.out.println("list users => "+new Gson().toJson(user));
 	 
@@ -52,23 +55,12 @@ public class UserDaoImpl implements UserDao {
 	 return 1;
   }
 
-  public User validateUser(Login login) {
-	  
-    String sql = "From User where username='" + login.getUsername() + "' OR email = '"+ login.getUsername() +"' AND password='" + login.getPassword() + "'";
-    
-//    List<User> users = session.getCurrentSession().createQuery(sql).list();
-    @SuppressWarnings("unchecked")
-	List<User> users =  HibernateUtil.getSession().createQuery(sql).list();
 
-    return users.size() > 0 ? users.get(0) : null;
-  }
-    
   
 	@SuppressWarnings("unchecked")
-	public List<User> list() {
-	
-	   //return (List<User>)session.getCurrentSession().createQuery("from User").list();
-	   return  (List<User>)HibernateUtil.getSession().createQuery("FROM User").list();
+	public List<UserDTO> list() {
+		
+	   return  (List<UserDTO>)HibernateUtil.getSession().createQuery("FROM UserDTO").list();
     }
 
 	public boolean delete(int id) {
@@ -76,9 +68,9 @@ public class UserDaoImpl implements UserDao {
 			 Transaction transaction = null;
 			 Session session = null;
 			 try {
-				 Query query  = HibernateUtil.getSession().createQuery("FROM User WHERE id = :id");
+				 Query query  = HibernateUtil.getSession().createQuery("FROM UserDTO WHERE id = :id");
 				 query.setParameter("id", id);
-				 User user = (User)query.list().get(0);
+				 UserDTO user = (UserDTO)query.list().get(0);
 				 session = HibernateUtil.getSession();
 			     transaction = session.beginTransaction();
 			     session.delete(user);
@@ -93,23 +85,33 @@ public class UserDaoImpl implements UserDao {
 		return true;
 	}	
 
-}
+    @Override
+    public UserDTO findUserInfo(String userName) {
 
-//
-//
-//class UserMapper implements RowMapper<User> {
-//
-//  public User mapRow(ResultSet rs, int arg1) throws SQLException {
-//    User user = new User();
-//
-//    user.setUsername(rs.getString("username"));
-//    user.setPassword(rs.getString("password"));
-//    user.setFirstname(rs.getString("firstname"));
-//    user.setLastname(rs.getString("lastname"));
-//    user.setEmail(rs.getString("email"));
-//    user.setAddress(rs.getString("address"));
-//    user.setPhone(rs.getString("phone"));
-//
-//    return user;
-//  }
-//}
+		UserDTO user = null;
+		try {
+			Query query = HibernateUtil.getSession().createQuery("FROM UserDTO u where u.username = :username");
+			query.setParameter("username", userName);
+			user = (UserDTO) query.list().get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return user;
+    }
+ 
+    @Override
+    public List<String> getUserRoles(String userName) {
+       
+    	List<String> roles = null; 
+    	try {
+			Query query = HibernateUtil.getSession().createQuery("SELECT ur.role FROM UserRoleDTO ur where ur.username = :username");
+			query.setParameter("username", userName);
+		    roles  = (List<String>) query.list();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+         
+        return roles;
+    }
+     
+}

@@ -6,31 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.UserDao;
-import com.springmvc.model.Login;
-import com.springmvc.model.User;
+import com.springmvc.model.UserInfo;
+import com.springmvc.model.dto.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-  @Autowired
-  public UserDao userDao;
+	@Autowired
+	public UserDao userDao;
 
-  public int register(User user) {
-    return userDao.register(user);
-  }
+	public int register(UserDTO user) {
+		return userDao.register(user);
+	}
 
-  public User validateUser(Login login) {
-    return userDao.validateUser(login);
-  }
+	public List<UserDTO> list() {
+		return userDao.list();
+	}
 
-  public List<User> list(){
-	  return userDao.list();
-  }
+	@Override
+	public boolean delete(int id) {
+		return userDao.delete(id);
+	}
 
-@Override
-public boolean delete(int id) {
-	 return userDao.delete(id);
-}
+	@Override
+	public UserInfo findUserInfo(String username) {
+		
+		UserDTO userDTO = userDao.findUserInfo(username);
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUserName(userDTO.getUsername());
+		userInfo.setPassword(userDTO.getPassword());
+		return userInfo;
+	}
+
+	@Override
+	public List<String> getUserRoles(String username) {
+		return userDao.getUserRoles(username);
+	}
+
   
   
 }

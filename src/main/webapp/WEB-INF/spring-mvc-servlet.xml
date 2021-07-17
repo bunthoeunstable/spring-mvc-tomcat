@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,7 +14,7 @@
 	   http://www.springframework.org/schema/mvc
 	   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!--  <import resource="classpath:jbr/config/user-beans.xml" /> -->
+	 <import resource="classpath:jbr/config/user-beans.xml" />
 
 	<context:component-scan base-package="com.springmvc.controller, com.springmvc.model, com.springmvc.dao, com.springmvc.service" />
 	<context:annotation-config />
@@ -24,7 +24,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 	
 
-<!-- If you use MySQL Database comment out this bean and let others commented  -->
+If you use MySQL Database comment out this bean and let others commented 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" ></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/spring_mvc" ></property>
@@ -32,15 +32,15 @@
 		<property name="password" value="" ></property>
 	</bean>
 	
-	<!-- SQL Server 2012 and 2014 Database drivers and connectivity code -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	SQL Server 2012 and 2014 Database drivers and connectivity code
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" ></property>
 		<property name="url" value="jdbc:sqlserver://localhost;databaseName=mydb" ></property>
 		<property name="username" value="sa" ></property>
 		<property name="password" value="abcd@1234" ></property>
-	</bean> -->
+	</bean>
 
-	<!-- Session Factory Declaration -->
+	Session Factory Declaration
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" ></property>
@@ -71,3 +71,4 @@
 	</bean>
 
 </beans>
+ -->

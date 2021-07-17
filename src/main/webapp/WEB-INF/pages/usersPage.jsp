@@ -8,18 +8,29 @@
 <title>List Users</title>
 </head>
 <body>
+    <jsp:include page="_menu.jsp" />
+ 
+    <h1>List Users</h1>
+  	<h3>  <a href="${pageContext.request.contextPath}/admin/register">Register</a> 	</h3>
 	<table>
 		<tr>
-			<td>List Users</td>
+			<th>No</th>
+			<th>FistName</th>
+			<th>LastName</th>
+			<th>UserName</th>
+			<th>Email</th>
+			<th>Action</th>
 		</tr>
 		<%! int i = 0;  %>
 		<c:forEach items="${list}" var="val">
 			<tr>
 				<td><%= ++i  %></td>
+				<td>${val.firstname}</td>
+				<td>${val.lastname}</td>
 				<td> ${val.username}</td>
 				<td> ${val.email}</td>
 				<td>
-					<form action="users/${val.id}/delete" method="post">
+					<form action="${pageContext.request.contextPath}/admin/user/${val.id}/delete" method="post">
 						<button type="submit">Delete</button>
 					</form>
 				</td>
